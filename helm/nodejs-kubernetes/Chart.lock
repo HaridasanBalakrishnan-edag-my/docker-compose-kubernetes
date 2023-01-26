@@ -1,0 +1,18 @@
+dependencies:
+- name: prometheus
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 15.18.0
+- name: grafana
+  repository: https://grafana.github.io/helm-charts
+  version: 6.43.5
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 12.1.7
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 17.4.1
+- name: keda
+  repository: https://kedacore.github.io/charts
+  version: 2.9.0
+digest: sha256:985184f4995a572e04743a35723145587581a0a9bbfdec2b563c449d1f35bdf4
+generated: "2023-01-13T14:43:39.4302559+08:00"

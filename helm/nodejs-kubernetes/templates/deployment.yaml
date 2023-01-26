@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/path: {{ .Values.backend.prometheus.path }}
+        prometheus.io/port: '3000'
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.repository }}
+          imagePullPolicy: {{ .Values.image.imagePullPolicy }}
+          ports:
+            - containerPort: {{ .Values.backend.port }}
+          env:
+            - name: PORT
+              value: '3000'
+            - name: FIBONACCI
+              value: '500'
+            - name: NODE_ENV
+              value: production
+            - name: BACK_OFF
+              value: '5000'
+            - name: ATTEMPTS
+              value: '5'
+            - name: DB_CONNECTION
+              value: postgres
+            - name: DB_HOST
+              value: {{ .Chart.Name }}-postgresql-primary-hl
+            - name: DB_PORT
+              value: '5432'
+            - name: DB_USERNAME
+              value: postgres
+            - name: DB_PASSWORD
+              value: postgres
+            - name: DB_DATABASE
+              value: development
+            - name: REDIS_URL
+              value: redis://{{ .Chart.Name }}-redis:6379
+            - name: REDIS_HOST
+              value: {{ .Chart.Name }}-redis
+            - name: REDIS_PORT
+              value: '6379'
+            

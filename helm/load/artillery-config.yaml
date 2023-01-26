@@ -1,0 +1,16 @@
+config:
+  target: 'http://localhost:30000'
+  phases:
+      # time for the load test in seconds
+    - duration: 300
+      # number of requests in the same time
+      arrivalRate: 1000
+      # maximum arrivalRate over time specified in duration 
+      rampTo: 10000
+  
+scenarios:
+  - name: 'Load test'
+    flow: 
+      - get:
+          url: '/'
+

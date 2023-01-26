@@ -1,0 +1,29 @@
+postgresql:
+  architecture: replication
+  auth:
+    username: postgres
+    password: postgres
+    postgresPassword: postgres
+    database: development
+
+prometheus:
+  alertmanager:
+    enabled: false
+  pushgateway:
+    enabled: false
+  nodeExporter:
+    enabled: false
+
+grafana:
+  service:
+    type: NodePort
+    nodePort: 30001
+
+backend:
+  port: 3000
+  prometheus:
+    path: /metrics
+
+image:
+  repository: local/nodejs-kubernetes:latest
+  imagePullPolicy: Never

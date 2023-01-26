@@ -1,0 +1,21 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "setupFiles": ["<rootDir>/env.ts"],
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "moduleNameMapper": {
+    "^common/(.*)": "<rootDir>/../src/common/$1",
+    "^modules/(.*)": "<rootDir>/../src/modules/$1",
+    "^shared/(.*)": "<rootDir>/../src/shared/$1",
+    "^helpers/(.*)": "<rootDir>/../src/helpers/$1",
+    "^decorators/(.*)": "<rootDir>/../src/decorators/$1",
+    "^filters/(.*)": "<rootDir>/../src/filters/$1",
+    "^providers/(.*)": "<rootDir>/../src/providers/$1",
+    "^interceptors/(.*)": "<rootDir>/../src/interceptors/$1",
+    "^test/(.*)": "<rootDir>/../src/test/$1"
+  },
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  }
+}

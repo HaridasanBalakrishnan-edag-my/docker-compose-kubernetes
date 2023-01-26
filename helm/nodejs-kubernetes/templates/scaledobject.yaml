@@ -1,0 +1,22 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+spec:
+  maxReplicaCount: 5
+  minReplicaCount: 1
+  idleReplicaCount: 0
+  cooldownPeriod: 300 
+  
+  pollingInterval: 15v
+  scaleTargetRef:
+    name: {{ .Chart.Name }}
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: http://{{ .Chart.Name }}-prometheus-server:80
+        metricName: cpu_usage
+        query: sum(irate(process_cpu_seconds_total{app="{{ .Chart.Name }}"}[2m])) * 100
+        threshold: '50'
